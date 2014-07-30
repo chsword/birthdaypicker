@@ -1,10 +1,6 @@
 ﻿/*!
- * jQuery Birthday Picker: v1.4 - 10/16/2011
- * http://abecoffman.com/stuff/birthdaypicker
- *
- * Copyright (c) 2010 Abe Coffman
- * Dual licensed under the MIT and GPL licenses.
- *
+ * https://github.com/chsword/birthdaypicker
+ * forked from abecoffman/birthdaypicker
  */
 
 (function( $ ){
@@ -12,7 +8,7 @@
   // plugin variables
   var months = {
     "short": ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
-    "long": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
+    "long": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
   },
       todayDate = new Date(),
       todayYear = todayDate.getFullYear(),
@@ -44,10 +40,10 @@
       if (options) { $.extend(settings, options); }
 
       // Create the html picker skeleton
-      var $fieldset = $("<fieldset class='birthday-picker'></fieldset>"),
-          $year = $("<select class='birth-year' name='birth[year]'></select>"),
-          $month = $("<select class='birth-month' name='birth[month]'></select>"),
-          $day = $("<select class='birth-day' name='birth[day]'></select>");
+        var $fieldset = $("<fieldset class='birthday-picker'></fieldset>"),
+          $year = $("<select class='birth-year'></select>"),
+          $month = $("<select class='birth-month'></select>"),
+          $day = $("<select class='birth-day'></select>");
 
       if (settings["legend"]) { $("<legend>" + settings["legend"] + "</legend>").appendTo($fieldset); }
 
@@ -55,7 +51,7 @@
 
       // Deal with the various Date Formats
       if (settings["dateFormat"] == "bigEndian") {
-        $fieldset.append($year).append($month).append($day);
+          $fieldset.append($year).append("年").append($month).append("月").append($day).append("日");
         if (tabindex != null) {
           $year.attr('tabindex', tabindex);
           $month.attr('tabindex', tabindex++);
@@ -79,9 +75,9 @@
 
       // Add the option placeholders if specified
       if (settings["placeholder"]) {
-        $("<option value='0'>Year:</option>").appendTo($year);
-        $("<option value='0'>Month:</option>").appendTo($month);
-        $("<option value='0'>Day:</option>").appendTo($day);
+        $("<option value='0'>年:</option>").appendTo($year);
+        $("<option value='0'>月:</option>").appendTo($month);
+        $("<option value='0'>日:</option>").appendTo($day);
       }
 
       var hiddenDate;
